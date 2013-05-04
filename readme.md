@@ -2,6 +2,6 @@
 
 General OS utilities, Cocoa / UIKit / Foundation related.
 
-### Requirements
+### Links
 
-- OS X 10.8 Mountain Lion
+- [Repository](https://bitbucket.org/memoways/apple-os-utilities)
