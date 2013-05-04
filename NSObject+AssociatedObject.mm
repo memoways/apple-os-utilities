@@ -13,21 +13,19 @@
 
 namespace
 {
+	dispatch_once_t _keysOnce = 0;
 	NSMutableDictionary* _keys = nil;
 }
 
 
 @implementation NSObject (AssociatedObject)
 
-+ (void) associatedObjectSetupKeysRegistery
++ (void) associatedObjectSetupKeysRegistry
 {
-	@synchronized( self )
+	dispatch_once( &_keysOnce, ^ ()
 	{
-		if ( _keys == nil )
-		{
-			_keys = [NSMutableDictionary new];
-		}
-	}
+		if ( _keys == nil ) _keys = [NSMutableDictionary new];
+	});
 }
 
 + (const void*) associatedObjectRawKeyForKey: (id) key
