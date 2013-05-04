@@ -72,7 +72,7 @@ namespace
 - (void) setAssociatedObject: (id) object forKey: (id) key
 {
 	if ( key == nil ) return;
-	if ( _keys == nil ) [NSObject associatedObjectSetupKeysRegistery];
+	if ( _keys == nil ) [NSObject associatedObjectSetupKeysRegistry];
 
 	const void* rawKey = [NSObject associatedObjectRawKeyForKey: key];
 
