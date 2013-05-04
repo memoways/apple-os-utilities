@@ -5,6 +5,9 @@
 //
 
 #import "OS/NSData+Utilities.h"
+
+#import "OS/ARC.h"
+
 #import <CommonCrypto/CommonCrypto.h>
 #import <Security/Security.h>
 #import <Security/SecEncodeTransform.h>
