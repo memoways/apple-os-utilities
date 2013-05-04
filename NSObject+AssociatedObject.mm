@@ -6,6 +6,8 @@
 
 #import "OS/NSObject+AssociatedObject.h"
 
+#import "OS/ARC.h"
+
 #import <objc/runtime.h>
 
 
