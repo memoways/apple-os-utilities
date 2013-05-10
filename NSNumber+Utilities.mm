@@ -69,4 +69,9 @@
 	return [formatter stringFromNumber: self];
 }
 
+- (NSDate*) dateJSON
+{
+	return [[NSDate alloc] initWithTimeIntervalSince1970: [self doubleValue]];
+}
+
 @end
