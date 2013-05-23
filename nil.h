@@ -9,11 +9,7 @@
 
 // is_nil & is_not_nil
 
-#ifndef DEBUG
 NS_INLINE BOOL is_nil( id object )
-#else
-inline BOOL is_nil( id object )
-#endif
 {
 	if ( object == nil ) return YES;
 	if ( object == NSNull.null ) return YES;
@@ -35,11 +31,7 @@ NS_INLINE BOOL is_nil( void* pointer )
 
 #endif
 
-#ifndef DEBUG
 NS_INLINE BOOL is_not_nil( id object )
-#else
-inline BOOL is_not_nil( id object )
-#endif
 {
 	return not is_nil( object );
 }
@@ -86,11 +78,7 @@ NS_INLINE bool is_not_nullptr( void* pointer )
 
 // is_empty & is_not_empty
 
-#ifndef DEBUG
 NS_INLINE BOOL is_empty( id object )
-#else
-inline BOOL is_empty( id object )
-#endif
 {
 	if ( is_nil( object ) ) return YES;
 
@@ -146,11 +134,7 @@ NS_INLINE BOOL is_not_empty( void* pointer )
 
 // idfy & unidfy
 
-#ifndef DEBUG
 NS_INLINE id idfy( id object )
-#else
-inline id idfy( id object )
-#endif
 {
 	if ( is_nil( object ) ) return NSNull.null;
 
@@ -173,11 +157,7 @@ NS_INLINE id idfy( void* pointer )
 
 #endif
 
-#ifndef DEBUG
 NS_INLINE id unidfy( id object )
-#else
-inline id unidfy( id object )
-#endif
 {
 	if ( is_nil( object ) ) return nil;
 	
