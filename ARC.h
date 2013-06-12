@@ -4,9 +4,6 @@
 //	copyright:	© 2011-2013, men in silicium sàrl
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreFoundation/CoreFoundation.h>
-
 
 #if __has_feature( objc_arc )
 

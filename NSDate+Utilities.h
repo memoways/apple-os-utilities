@@ -4,8 +4,6 @@
 //	copyright:	© 2009-2013, men in silicium sàrl
 //
 
-#import <Foundation/Foundation.h>
-
 
 FOUNDATION_EXPORT const NSTimeInterval NSTimeIntervalSince2012;
 FOUNDATION_EXPORT const NSTimeInterval NSTimeIntervalUntil2012;

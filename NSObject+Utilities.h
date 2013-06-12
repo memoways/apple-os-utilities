@@ -4,8 +4,6 @@
 //	copyright:	© 2010-2013, men in silicium sàrl
 //
 
-#import <Foundation/Foundation.h>
-
 
 @interface NSObject (Utilities)
 
