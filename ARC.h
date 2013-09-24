@@ -46,7 +46,7 @@ NS_INLINE void CFRetainSafe( CFTypeRef cf )
 	CFRetain( cf );
 }
 
-NS_INLINE void CFReleaseSafe( CFTypeRef cf )
+NS_INLINE void CFReleaseSafe( CF_RELEASES_ARGUMENT CFTypeRef cf )
 {
 #ifdef __cplusplus
 	if ( cf == nullptr ) return;
