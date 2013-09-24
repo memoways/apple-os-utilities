@@ -39,24 +39,28 @@ const NSInteger kRGB = 3;
 
 	NSScanner* scanner = nil;
 
+	// red
 	unsigned int red = 0;
 	if ( (format == kRRGGBBAA) or (format == kRRGGBB) ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 0, 2 )]];
 	if ( (format == kRGBA) or (format == kRGB) ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 0, 1 )]];
 	[scanner scanHexInt: &red];
 	scanner = nil;
 
+	// green
 	unsigned int green = 0;
 	if ( (format == kRRGGBBAA) or (format == kRRGGBB) ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 2, 2 )]];
 	if ( (format == kRGBA) or (format == kRGB) ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 1, 1 )]];
 	[scanner scanHexInt: &green];
 	scanner = nil;
 
+	// blue
 	unsigned int blue = 0;
 	if ( (format == kRRGGBBAA) or (format == kRRGGBB) ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 4, 2 )]];
 	if ( (format == kRGBA) or (format == kRGB) ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 2, 1 )]];
 	[scanner scanHexInt: &blue];
 	scanner = nil;
 
+	// alpha
 	unsigned int alpha = 255;
 	if ( format == kRRGGBBAA ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 6, 2 )]];
 	if ( format == kRGBA ) scanner = [[NSScanner alloc] initWithString: [color substringWithRange: NSMakeRange( 3, 1 )]];
