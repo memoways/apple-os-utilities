@@ -12,7 +12,7 @@
 
 @interface MDeallocBlock : NSObject
 
-@property ( nonatomic, readwrite, copy ) dispatch_block_t block;
+@property ( readwrite, nonatomic, copy ) dispatch_block_t block;
 
 @end
 
