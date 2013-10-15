@@ -7,6 +7,9 @@
 
 @interface NSDictionary (Utilities)
 
+- (BOOL) isMutable;
+- (BOOL) isMutableDictionary;
+
 - (BOOL) containsKey: (id) key;
 - (BOOL) containsObject: (id) object;
 

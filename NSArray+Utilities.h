@@ -7,6 +7,8 @@
 
 @interface NSArray (Utilities)
 
+- (BOOL) isMutable;
+- (BOOL) isMutableArray;
 
 - (NSIndexSet*) indexesOfObjects: (NSArray*) objects;
 

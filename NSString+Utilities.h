@@ -24,6 +24,9 @@
 + (instancetype) stringBase64WithData: (NSData*) data;
 + (instancetype) stringWithFormat: (NSString*) format arguments: (va_list) arguments NS_FORMAT_FUNCTION(1,0);
 
+- (BOOL) isMutable;
+- (BOOL) isMutableString;
+
 - (NSUInteger) unsignedIntegerValue;
 - (uint64_t) unsignedLongLongValue;
 - (NSString*) stringValue;

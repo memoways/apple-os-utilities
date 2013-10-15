@@ -308,6 +308,16 @@ namespace
 	}
 }
 
+- (BOOL) isMutable
+{
+	return [self isMutableString];
+}
+
+- (BOOL) isMutableString
+{
+	return [self respondsToSelector: @selector(appendString:)];
+}
+
 - (NSUInteger) unsignedIntegerValue
 {
 	return [NSDecimalNumber decimalNumberWithString: self].unsignedIntegerValue;

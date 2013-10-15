@@ -15,6 +15,16 @@
 
 @implementation NSData (Utilities)
 
+- (BOOL) isMutable
+{
+	return [self isMutableData];
+}
+
+- (BOOL) isMutableData
+{
+	return [self respondsToSelector: @selector(appendData:)];
+}
+
 - (NSString*) stringUsingEncoding: (NSStringEncoding) encoding
 {
 	return [[NSString alloc] initWithData: self encoding: encoding];

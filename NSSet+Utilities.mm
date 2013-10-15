@@ -14,6 +14,16 @@
 	return [[NSSet alloc] initWithArray: array];
 }
 
+- (BOOL) isMutable
+{
+	return [self isMutableSet];
+}
+
+- (BOOL) isMutableSet
+{
+	return [self respondsToSelector: @selector(addObject:)];
+}
+
 - (NSOrderedSet*) sortedSet
 {
 	return [self sortedSetUsingComparator: ^ ( id lhs, id rhs ) { return [lhs compare: rhs]; }];

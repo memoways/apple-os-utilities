@@ -7,6 +7,9 @@
 
 @interface NSOrderedSet (Utilities)
 
+- (BOOL) isMutable;
+- (BOOL) isMutableOrderedSet;
+
 + (NSOrderedSet*) newWithArray: (NSArray*) array;
 
 - (NSArray*) allObjects;

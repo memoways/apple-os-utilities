@@ -9,8 +9,14 @@
 
 @implementation NSArray (Utilities)
 
+- (BOOL) isMutable
 {
+	return [self isMutableArray];
+}
 
+- (BOOL) isMutableArray
+{
+	return [self respondsToSelector: @selector(addObject:)];
 }
 
 - (NSIndexSet*) indexesOfObjects: (NSArray*) objects

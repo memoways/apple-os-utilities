@@ -9,6 +9,9 @@
 
 + (NSSet*) newWithArray: (NSArray*) array;
 
+- (BOOL) isMutable;
+- (BOOL) isMutableSet;
+
 - (NSOrderedSet*) sortedSet;
 - (NSOrderedSet*) sortedSetUsingComparator: (NSComparator) comparator;
 

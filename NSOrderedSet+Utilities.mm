@@ -9,6 +9,17 @@
 
 @implementation NSOrderedSet (Utilities)
 
+
+- (BOOL) isMutable
+{
+	return [self isMutableOrderedSet];
+}
+
+- (BOOL) isMutableOrderedSet
+{
+	return [self respondsToSelector: @selector(addObject:)];
+}
+
 + (NSOrderedSet*) newWithArray: (NSArray*) array
 {
 	return [NSOrderedSet orderedSetWithArray: array];

@@ -11,6 +11,16 @@
 
 @implementation NSDictionary (Utilities)
 
+- (BOOL) isMutable
+{
+	return [self isMutableDictionary];
+}
+
+- (BOOL) isMutableDictionary
+{
+	return [self respondsToSelector: @selector(setObject:forKey:)];
+}
+
 - (BOOL) containsKey: (id) key
 {
 	return [self objectForKey: key] != nil;

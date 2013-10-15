@@ -7,6 +7,9 @@
 
 @interface NSData (Utilities)
 
+- (BOOL) isMutable;
+- (BOOL) isMutableData;
+
 - (NSString*) stringUsingEncoding: (NSStringEncoding) encoding;
 - (NSString*) stringUsingUTF8StringEncoding;
 
