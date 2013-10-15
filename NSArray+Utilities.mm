@@ -9,11 +9,8 @@
 
 @implementation NSArray (Utilities)
 
-- (id) firstObject
 {
-	if ( self.count == 0 ) return nil;
 
-	return self[0];
 }
 
 - (NSIndexSet*) indexesOfObjects: (NSArray*) objects

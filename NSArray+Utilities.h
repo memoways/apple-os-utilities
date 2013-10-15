@@ -7,7 +7,6 @@
 
 @interface NSArray (Utilities)
 
-- (id) firstObject;
 
 - (NSIndexSet*) indexesOfObjects: (NSArray*) objects;
 
