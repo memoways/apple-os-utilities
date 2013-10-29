@@ -9,4 +9,10 @@
 
 - (void) systemVersion: (NSInteger*) major minor: (NSInteger*) minor fix: (NSInteger*) fix;
 
+- (BOOL) isMavericks;
+- (BOOL) isMavericksOrHigher;
+
+- (BOOL) isMountainLion;
+- (BOOL) isMountainLionOrHigher;
+
 @end

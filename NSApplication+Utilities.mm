@@ -30,4 +30,44 @@ namespace
 	if ( (count >= 3) and (fix != nullptr) ) *fix = [_systemVersion[2] integerValue];
 }
 
+- (BOOL) isMavericks
+{
+	NSInteger major = 10;
+	NSInteger minor = 9;
+
+	[self systemVersion: &major minor: &minor fix: nullptr];
+
+	return (major == 10) and (minor == 9);
+}
+
+- (BOOL) isMavericksOrHigher
+{
+	NSInteger major = 10;
+	NSInteger minor = 9;
+
+	[self systemVersion: &major minor: &minor fix: nullptr];
+
+	return (major == 10) and (minor >= 9);
+}
+
+- (BOOL) isMountainLion
+{
+	NSInteger major = 10;
+	NSInteger minor = 8;
+
+	[self systemVersion: &major minor: &minor fix: nullptr];
+
+	return (major == 10) and (minor == 8);
+}
+
+- (BOOL) isMountainLionOrHigher
+{
+	NSInteger major = 10;
+	NSInteger minor = 8;
+
+	[self systemVersion: &major minor: &minor fix: nullptr];
+
+	return (major == 10) and (minor >= 8);
+}
+
 @end

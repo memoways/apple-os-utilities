@@ -8,6 +8,7 @@
 #import "OS/nil.h"
 
 #import "OS/NS+Creation.h"
+#import "OS/NSApplication+Utilities.h"
 #import "OS/NSArray+Utilities.h"
 #import "OS/NSColor+Utilities.h"
 #import "OS/NSData+Utilities.h"
