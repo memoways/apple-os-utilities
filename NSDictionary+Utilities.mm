@@ -38,7 +38,7 @@
 	if ( key == nil ) return nil;
 	if ( not [key isKindOfClass: NSString.class] ) return nil;
 
-	for ( id mykey in self )
+	for ( id mykey in [self allKeys] )
 	{
 		if ( not [mykey isKindOfClass: NSString.class] ) continue;
 
@@ -56,7 +56,7 @@
 	NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithCapacity: self.count];
 	BOOL isLossy = NO;
 
-	for ( id key in self )
+	for ( id key in [self allKeys] )
 	{
 		id object = [self objectForKey: key];
 		if ( [dictionary objectForKey: object] == nil )
@@ -111,6 +111,24 @@
 	if ( not [value respondsToSelector: @selector(valueForKey:)] ) return nil;
 
 	return [value valueForKey: key2];
+}
+
+- (NSDictionary*) entriesPassingTest: (BOOL (^)( id key, id obj, BOOL* stop )) predicate
+{
+	NSMutableDictionary* entries = [NSMutableDictionary new];
+	for ( id key in self.allKeys )
+	{
+		id object = self[key];
+		BOOL stop = NO;
+		if ( predicate( key, object, &stop ) )
+		{
+			entries[key] = object;
+		}
+
+		if ( stop ) break;
+	}
+
+	return entries;
 }
 
 @end

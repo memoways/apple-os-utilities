@@ -22,6 +22,8 @@
 
 - (id) valueForKey: (NSString*) key1 forKey: (NSString*) key2;
 
+- (NSDictionary*) entriesPassingTest: (BOOL (^)( id key, id obj, BOOL* stop )) predicate;
+
 @end
 
 
