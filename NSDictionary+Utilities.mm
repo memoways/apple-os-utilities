@@ -38,7 +38,7 @@
 	if ( key == nil ) return nil;
 	if ( not [key isKindOfClass: NSString.class] ) return nil;
 
-	for ( id mykey in [self allKeys] )
+	for ( id mykey in self.allKeys )
 	{
 		if ( not [mykey isKindOfClass: NSString.class] ) continue;
 
@@ -56,7 +56,7 @@
 	NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithCapacity: self.count];
 	BOOL isLossy = NO;
 
-	for ( id key in [self allKeys] )
+	for ( id key in self.allKeys )
 	{
 		id object = [self objectForKey: key];
 		if ( [dictionary objectForKey: object] == nil )
