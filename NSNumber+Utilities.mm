@@ -11,7 +11,13 @@
 
 - (BOOL) isBoolean
 {
-	return (self == @NO) or (self == @YES) or (self == (__bridge NSNumber*) kCFBooleanFalse) or (self == (__bridge NSNumber*) kCFBooleanTrue);
+	if ( self == (__bridge NSNumber*) kCFBooleanTrue ) return YES;
+	if ( self == (__bridge NSNumber*) kCFBooleanFalse ) return YES;
+
+	if ( strncmp( self.objCType, @encode(bool), 8 ) == 0 ) return YES;
+	if ( self.objCType[0] == 'B' ) return YES;
+
+	return NO;
 }
 
 - (NSUInteger) numberSize
