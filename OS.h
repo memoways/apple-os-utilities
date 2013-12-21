@@ -6,6 +6,7 @@
 
 #import "OS/ARC.h"
 #import "OS/nil.h"
+#import "OS/dispatch.h"
 
 #import "OS/NS+Creation.h"
 #import "OS/NSApplication+Utilities.h"
