@@ -6,6 +6,7 @@
 
 #import "OS/NSString+Utilities.h"
 #import "OS/ARC.h"
+#import "OS/NSData+Utilities.h"
 
 #import <CommonCrypto/CommonCrypto.h>
 #import <Security/Security.h>
@@ -179,7 +180,7 @@ namespace
 + (instancetype) stringHexadecimalWithNumber: (NSNumber*) number
 {
 	unsigned long long value = number.unsignedLongLongValue;
-	NSData* data = [NSData dataWithBytes: &value length: sizeof( value )];
+	NSData* data = [NSData newWithBytes: &value length: sizeof( value )];
 
 	return [self stringHexadecimalWithData: data];
 }

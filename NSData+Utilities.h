@@ -7,6 +7,8 @@
 
 @interface NSData (Utilities)
 
++ (instancetype) newWithBytes: (const void*) bytes length: (NSUInteger) length;
+
 - (BOOL) isMutable;
 - (BOOL) isMutableData;
 

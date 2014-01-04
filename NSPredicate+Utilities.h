@@ -7,4 +7,8 @@
 
 @interface NSPredicate (Utilities)
 
++ (instancetype) newWithString: (NSString*) predicateString;
++ (instancetype) newWithFormat: (NSString*) predicateFormat, ...;
++ (instancetype) newWithFormat: (NSString*) predicateFormat arguments: (NSArray*) arguments;
+
 @end

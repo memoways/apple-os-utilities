@@ -15,6 +15,11 @@
 
 @implementation NSData (Utilities)
 
++ (instancetype) newWithBytes: (const void*) bytes length: (NSUInteger) length
+{
+	return [[NSData alloc] initWithBytes: bytes length: length];
+}
+
 - (BOOL) isMutable
 {
 	return [self isMutableData];
