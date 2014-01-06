@@ -32,11 +32,11 @@ namespace
 	{
 		deallocBlocks = [NSMutableArray new];
 		[self setAssociatedObject: deallocBlocks forRawKey: kMDeallocBlocksRawKey];
-    }
+	}
 
 	MDeallocBlock* deallocBlock = [MDeallocBlock new];
 	deallocBlock.block = block;
-    [deallocBlocks addObject: deallocBlock];
+	[deallocBlocks addObject: deallocBlock];
 }
 
 - (dispatch_block_t) popDeallocBlock
