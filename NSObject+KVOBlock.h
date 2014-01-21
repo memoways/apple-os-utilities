@@ -10,6 +10,8 @@
 typedef void (^ KVOBlock)( id object, NSString* keypath, NSDictionary* change );
 
 - (id) addObserverForKeyPath: (NSString*) keyPath block: (KVOBlock) block;
+
 - (void) removeBlockObserver: (id) uuid;
+- (void) removeBlockObservers;
 
 @end
