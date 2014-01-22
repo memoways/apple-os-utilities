@@ -7,8 +7,10 @@
 
 @interface NSObject (DeallocBlock)
 
-- (void) pushDeallocBlock: (dispatch_block_t) block;
-- (dispatch_block_t) popDeallocBlock;
+- (void) addDeallocBlock: (dispatch_block_t) block;
+- (void) addDeallocBlockOnQueue: (dispatch_queue_t) queue block: (dispatch_block_t) block;
+
+- (dispatch_block_t) removeLastDeallocBlock;
 
 - (NSArray*) deallocBlocks;
 

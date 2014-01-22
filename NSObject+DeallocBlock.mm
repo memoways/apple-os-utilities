@@ -12,56 +12,74 @@
 
 @interface MDeallocBlock : NSObject
 
+
+@property ( readwrite, nonatomic, strong ) dispatch_queue_t queue;
 @property ( readwrite, nonatomic, copy ) dispatch_block_t block;
+
 
 @end
 
 
 namespace
 {
-	const void* const kMDeallocBlocksRawKey = "MDeallocBlocks";
+	const void* const kMDeallocBlocksRawKey = "com.meninsilicium.DeallocBlock";
 }
 
 
 @implementation NSObject (DeallocBlock)
 
-- (void) pushDeallocBlock: (dispatch_block_t) block
+- (void) addDeallocBlock: (dispatch_block_t) block
 {
-	NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
-	if ( deallocBlocks == nil )
-	{
-		deallocBlocks = [NSMutableArray new];
-		[self setAssociatedObject: deallocBlocks forRawKey: kMDeallocBlocksRawKey];
-	}
-
-	MDeallocBlock* deallocBlock = [MDeallocBlock new];
-	deallocBlock.block = block;
-	[deallocBlocks addObject: deallocBlock];
+	[self addDeallocBlockOnQueue: nil block: block];
 }
 
-- (dispatch_block_t) popDeallocBlock
+- (void) addDeallocBlockOnQueue: (dispatch_queue_t) queue block: (dispatch_block_t) block
 {
-	NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
-	if ( deallocBlocks == nil ) return nil;
-	if ( deallocBlocks.count == 0 ) return nil;
+	@synchronized( self )
+	{
+		NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
+		if ( deallocBlocks == nil )
+		{
+			deallocBlocks = [NSMutableArray new];
+			[self setAssociatedObject: deallocBlocks forRawKey: kMDeallocBlocksRawKey policy: OBJC_ASSOCIATION_RETAIN];
+		}
 
-	dispatch_block_t block = deallocBlocks.lastObject;
-	[deallocBlocks removeObject: block];
+		MDeallocBlock* deallocBlock = [MDeallocBlock new];
+		deallocBlock.queue = queue;
+		deallocBlock.block = block;
+		[deallocBlocks addObject: deallocBlock];
+	}
+}
 
-	return block;
+- (dispatch_block_t) removeLastDeallocBlock
+{
+	@synchronized( self )
+	{
+		NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
+		if ( deallocBlocks == nil ) return nil;
+		if ( deallocBlocks.count == 0 ) return nil;
+
+		dispatch_block_t block = deallocBlocks.lastObject;
+		[deallocBlocks removeObject: block];
+
+		return block;
+	}
 }
 
 - (NSArray*) deallocBlocks
 {
-	NSArray* deallocBlocks = (NSArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
-
-	NSMutableArray* blocks = [NSMutableArray new];
-	for ( MDeallocBlock* deallocBlock in deallocBlocks )
+	@synchronized( self )
 	{
-		[blocks addObject: deallocBlock.block];
-	}
+		NSArray* deallocBlocks = (NSArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
 
-	return [blocks copy];
+		NSMutableArray* blocks = [NSMutableArray new];
+		for ( MDeallocBlock* deallocBlock in deallocBlocks )
+		{
+			[blocks addObject: deallocBlock.block];
+		}
+
+		return [blocks copy];
+	}
 }
 
 @end
@@ -71,9 +89,15 @@ namespace
 
 - (void) dealloc
 {
-	if ( self.block != nil )
+	if ( self.block == nil ) return;
+
+	if ( self.queue == nil )
 	{
 		self.block();
+	}
+	else
+	{
+		dispatch_async( self.queue, self.block );
 	}
 }
 
