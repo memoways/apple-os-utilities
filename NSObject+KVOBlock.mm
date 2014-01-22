@@ -1,7 +1,7 @@
 //
 //	author:		fabrice truillot de chambrier
 //
-//	copyright:	© 2011-2014, men in silicium sàrl
+//	copyright:	© 2014-2014, men in silicium sàrl
 //
 
 #import "OS/OS.h"

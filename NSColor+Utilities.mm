@@ -34,6 +34,7 @@ const NSInteger kRGB = 3;
 		case 6: format = kRRGGBB; break;
 		case 4: format = kRGBA; break;
 		case 3: format = kRGB; break;
+		default: break;
 	}
 	if ( format == 0 ) return nil;
 

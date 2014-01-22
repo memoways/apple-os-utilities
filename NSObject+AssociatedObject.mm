@@ -13,7 +13,7 @@
 
 namespace
 {
-	dispatch_once_t _keysOnce = 0;
+	dispatch_once_t _keys_once = 0;
 	NSMutableDictionary* _keys = nil;
 }
 
@@ -22,7 +22,7 @@ namespace
 
 + (void) associatedObjectSetupKeysRegistry
 {
-	dispatch_once( &_keysOnce, ^ ()
+	dispatch_once( &_keys_once, ^ ()
 	{
 		if ( _keys == nil ) _keys = [NSMutableDictionary new];
 	});

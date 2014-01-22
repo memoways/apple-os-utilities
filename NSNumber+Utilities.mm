@@ -22,10 +22,10 @@
 
 - (NSUInteger) numberSize
 {
-	if ( self.isBoolean )
-	{
-		return 1;
-	}
+	if ( self.isBoolean ) return 1;
+
+	CFIndex size = CFNumberGetByteSize( (__bridge CFNumberRef) self );
+	if ( size > 0 ) return size;
 
 	CFNumberType type = CFNumberGetType( (__bridge CFNumberRef) self );
 
