@@ -20,6 +20,7 @@
 #import "OS/NSObject+Utilities.h"
 #import "OS/NSObject+AssociatedObject.h"
 #import "OS/NSObject+DeallocBlock.h"
+#import "OS/NSObject+KVOBlock.h"
 #import "OS/NSOrderedSet+Utilities.h"
 #import "OS/NSPredicate+Utilities.h"
 #import "OS/NSSet+Utilities.h"
