@@ -43,6 +43,11 @@ namespace
 	return [self addObserverForKeyPath: keyPath options: 0 queue: nil block: block];
 }
 
+- (id) addObserverForKeyPath: (NSString*) keyPath options: (NSKeyValueObservingOptions) options block: (KVOBlock) block
+{
+	return [self addObserverForKeyPath: keyPath options: options queue: nil block: block];
+}
+
 - (id) addObserverForKeyPath: (NSString*) keyPath options: (NSKeyValueObservingOptions) options queue: (dispatch_queue_t) queue block: (KVOBlock) block
 {
 	dispatch_once( &kvo_blocks_queue_once, ^ ()
@@ -165,13 +170,13 @@ namespace
 
 	if ( self.queue == nil )
 	{
-		self.block( self.object, self.keypath, change );
+		self.block( self.uuid, self.object, self.keypath, change );
 	}
 	else
 	{
 		dispatch_async( self.queue, ^ ()
 		{
-			self.block( self.object, self.keypath, change );
+			self.block( self.uuid, self.object, self.keypath, change );
 		});
 	}
 }
