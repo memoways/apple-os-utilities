@@ -7,8 +7,11 @@
 #import <dispatch/dispatch.h>
 
 
-DISPATCH_EXPORT DISPATCH_NONNULL_ALL
-void dispatch_async_on_main_queue( dispatch_block_t block );
+DISPATCH_INLINE DISPATCH_NONNULL_ALL DISPATCH_NOTHROW
+void dispatch_async_on_main_queue( dispatch_block_t block )
+{
+	dispatch_async( dispatch_get_main_queue(), block );
+}
 
 DISPATCH_INLINE DISPATCH_NONNULL_ALL DISPATCH_NOTHROW
 void dispatch_async_on_global_queue( dispatch_block_t block )
