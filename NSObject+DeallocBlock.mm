@@ -20,12 +20,6 @@
 @end
 
 
-namespace
-{
-	const void* const kMDeallocBlocksRawKey = "com.meninsilicium.DeallocBlock";
-}
-
-
 @implementation NSObject (DeallocBlock)
 
 - (void) addDeallocBlock: (dispatch_block_t) block
@@ -37,11 +31,11 @@ namespace
 {
 	@synchronized( self )
 	{
-		NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
+		NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: @selector(deallocBlocks)];
 		if ( deallocBlocks == nil )
 		{
 			deallocBlocks = [NSMutableArray new];
-			[self setAssociatedObject: deallocBlocks forRawKey: kMDeallocBlocksRawKey policy: OBJC_ASSOCIATION_RETAIN];
+			[self setAssociatedObject: deallocBlocks forRawKey: @selector(deallocBlocks) policy: OBJC_ASSOCIATION_RETAIN];
 		}
 
 		MDeallocBlock* deallocBlock = [MDeallocBlock new];
@@ -55,7 +49,7 @@ namespace
 {
 	@synchronized( self )
 	{
-		NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
+		NSMutableArray* deallocBlocks = (NSMutableArray*) [self associatedObjectForRawKey: @selector(deallocBlocks)];
 		if ( deallocBlocks == nil ) return nil;
 		if ( deallocBlocks.count == 0 ) return nil;
 
@@ -70,7 +64,7 @@ namespace
 {
 	@synchronized( self )
 	{
-		NSArray* deallocBlocks = (NSArray*) [self associatedObjectForRawKey: kMDeallocBlocksRawKey];
+		NSArray* deallocBlocks = (NSArray*) [self associatedObjectForRawKey: @selector(deallocBlocks)];
 
 		NSMutableArray* blocks = [NSMutableArray new];
 		for ( MDeallocBlock* deallocBlock in deallocBlocks )

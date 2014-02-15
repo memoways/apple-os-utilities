@@ -30,7 +30,6 @@
 
 namespace
 {
-	const char* const KVOBlocksKey = "com.meninsilicium.KVOBlocks";
 	dispatch_queue_t kvo_blocks_queue;
 	dispatch_once_t kvo_blocks_queue_once = 0;
 }
@@ -52,23 +51,23 @@ namespace
 {
 	dispatch_once( &kvo_blocks_queue_once, ^ ()
 	{
-		kvo_blocks_queue = dispatch_queue_create( KVOBlocksKey, 0 );
+		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", 0 );
 	});
 
 	MKVOBlock* observer = [MKVOBlock newWithObservee: self keypath: keyPath queue: queue block: block];
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
 	{
-		NSMutableDictionary* observers = [self associatedObjectForRawKey: KVOBlocksKey];
+		NSMutableDictionary* observers = [self associatedObjectForRawKey: @selector(addObserverForKeyPath:block:)];
 		if ( observers == nil )
 		{
 			observers = [NSMutableDictionary new];
-			[self setAssociatedObject: observers forRawKey: KVOBlocksKey];
+			[self setAssociatedObject: observers forRawKey: @selector(addObserverForKeyPath:block:)];
 		}
 
 		observers[observer.uuid] = observer;
 
-		[self addObserver: observer forKeyPath: keyPath options: options context: (void*) KVOBlocksKey];
+		[self addObserver: observer forKeyPath: keyPath options: options context: @selector(addObserverForKeyPath:block:)];
 	});
 
 	return observer.uuid;
@@ -83,16 +82,16 @@ namespace
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
 	{
-		NSMutableDictionary* observers = [self associatedObjectForRawKey: KVOBlocksKey];
+		NSMutableDictionary* observers = [self associatedObjectForRawKey: @selector(addObserverForKeyPath:block:)];
 		if ( observers == nil ) return;
 
 		MKVOBlock* observer = observers[uuid];
 		if ( observer == nil ) return;
 
 		[observers removeObjectForKey: uuid];
-		if ( is_empty( observers ) ) [self removeAssociatedObjectForRawKey: KVOBlocksKey];
+		if ( is_empty( observers ) ) [self removeAssociatedObjectForRawKey: @selector(addObserverForKeyPath:block:)];
 
-		[self removeObserver: observer forKeyPath: observer.keypath context: (void*) KVOBlocksKey];
+		[self removeObserver: observer forKeyPath: observer.keypath context: @selector(addObserverForKeyPath:block:)];
 	});
 }
 
@@ -105,15 +104,15 @@ namespace
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
 	{
-		NSMutableDictionary* observers = [self associatedObjectForRawKey: KVOBlocksKey];
+		NSMutableDictionary* observers = [self associatedObjectForRawKey: @selector(addObserverForKeyPath:block:)];
 		if ( observers == nil ) return;
 
 		[[observers copy] enumerateKeysAndObjectsUsingBlock: ^ ( NSString* uuid, MKVOBlock* observer, BOOL* stop )
 		{
 			[observers removeObjectForKey: uuid];
-			if ( is_empty( observers ) ) [self removeAssociatedObjectForRawKey: KVOBlocksKey];
+			if ( is_empty( observers ) ) [self removeAssociatedObjectForRawKey: @selector(addObserverForKeyPath:block:)];
 
-			[self removeObserver: observer forKeyPath: observer.keypath context: (void*) KVOBlocksKey];
+			[self removeObserver: observer forKeyPath: observer.keypath context: @selector(addObserverForKeyPath:block:)];
 		}];
 	});
 }
@@ -157,7 +156,7 @@ namespace
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
 	{
-		[self.object removeObserver: self forKeyPath: self.keypath context: (void*) KVOBlocksKey];
+		[self.object removeObserver: self forKeyPath: self.keypath context: @selector(addObserverForKeyPath:block:)];
 	});
 }
 
@@ -166,7 +165,7 @@ namespace
 	if ( self.block == nil ) return;
 	NSAssert( [keyPath isEqualToString: self.keypath], @"expecting [keyPath isEqualToString: self.keypath ]" );
 	NSAssert( object == self.object, @"expecting object == self.object" );
-	NSAssert( context == KVOBlocksKey, @"expecting context == KVOBlocksKey" );
+	NSAssert( context == @selector(addObserverForKeyPath:block:), @"expecting context == @selector(addObserverForKeyPath:block:)" );
 
 	if ( self.queue == nil )
 	{
