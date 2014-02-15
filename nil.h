@@ -94,6 +94,9 @@ NS_INLINE BOOL is_empty( id object )
 	// NSData
 	if ( [object isKindOfClass: NSData.class] and (((NSData*) object).length == 0) ) return YES;
 
+	// NSURL
+	if ( [object isKindOfClass: NSURL.class] and ([((NSURL*) object) absoluteString].length == 0) ) return YES;
+
 	return NO;
 }
 
