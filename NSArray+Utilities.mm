@@ -28,3 +28,26 @@
 }
 
 @end
+
+
+@implementation NSMutableArray (Utilities)
+
+- (void) intersectArray: (NSArray*) otherArray
+{
+	NSIndexSet* indexes = [self indexesOfObjectsPassingTest: ^ BOOL ( id object, NSUInteger index, BOOL* stop )
+	{
+		return not [otherArray containsObject: object];
+	}];
+
+	[self removeObjectsAtIndexes: indexes];
+}
+
+- (void) unionArray: (NSArray*) otherArray
+{
+	[otherArray enumerateObjectsUsingBlock: ^ ( id object, NSUInteger index, BOOL* stop )
+	{
+		if ( not [self containsObject: object] ) [self addObject: object];
+	}];
+}
+
+@end
