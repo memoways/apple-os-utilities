@@ -44,10 +44,10 @@
 
 - (void) unionArray: (NSArray*) otherArray
 {
-	[otherArray enumerateObjectsUsingBlock: ^ ( id object, NSUInteger index, BOOL* stop )
+	for ( id object in otherArray )
 	{
 		if ( not [self containsObject: object] ) [self addObject: object];
-	}];
+	}
 }
 
 @end
