@@ -42,8 +42,7 @@
 	{
 		if ( not [mykey isKindOfClass: NSString.class] ) continue;
 
-		if ( [mykey isEqualToStringCaseInsensitive: key] )
-		{
+		if ( [mykey isEqualToStringCaseInsensitive: key] ) {
 			return [self objectForKey: mykey];
 		}
 	}
@@ -59,12 +58,10 @@
 	for ( id key in self.allKeys )
 	{
 		id object = [self objectForKey: key];
-		if ( [dictionary objectForKey: object] == nil )
-		{
+		if ( [dictionary objectForKey: object] == nil ) {
 			dictionary[object] = key;
 		}
-		else
-		{
+		else {
 			isLossy = YES;
 		}
 	}
@@ -90,12 +87,10 @@
 		NSString* key = [path substringFromIndex: dot.location + 1];
 		id leaf = [self valueForKeyPath: subpath];
 		if ( is_nil( leaf ) ) return NO;
-		if ( [leaf isKindOfClass: NSDictionary.class] )
-		{
+		if ( [leaf isKindOfClass: NSDictionary.class] ) {
 			return [leaf hasValueForKey: key];
 		}
-		else
-		{
+		else {
 			return NO;
 		}
 	}
@@ -120,8 +115,7 @@
 	{
 		id object = self[key];
 		BOOL stop = NO;
-		if ( predicate( key, object, &stop ) )
-		{
+		if ( predicate( key, object, &stop ) ) {
 			entries[key] = object;
 		}
 
@@ -155,8 +149,7 @@
 {
 	for ( id key in self )
 	{
-		if ( not [keys containsObject: key] )
-		{
+		if ( not [keys containsObject: key] ) {
 			[self removeObjectForKey: key];
 		}
 	}

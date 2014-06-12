@@ -86,8 +86,7 @@ NS_INLINE BOOL is_empty( id object )
 	// NSArray, NSDictionary, NSSet & NSOrderedSet
 	if ( ([object isKindOfClass: NSArray.class] or [object isKindOfClass: NSDictionary.class] or
 		[object isKindOfClass: NSSet.class] or [object isKindOfClass: NSOrderedSet.class]) and
-		([object count] == 0) )
-	{
+		([object count] == 0) ) {
 		return YES;
 	}
 

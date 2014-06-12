@@ -67,8 +67,7 @@
 		NSArray* deallocBlocks = (NSArray*) [self associatedObjectForRawKey: @selector(deallocBlocks)];
 
 		NSMutableArray* blocks = [NSMutableArray new];
-		for ( MDeallocBlock* deallocBlock in deallocBlocks )
-		{
+		for ( MDeallocBlock* deallocBlock in deallocBlocks ) {
 			[blocks addObject: deallocBlock.block];
 		}
 
@@ -85,12 +84,10 @@
 {
 	if ( self.block == nil ) return;
 
-	if ( self.queue == nil )
-	{
+	if ( self.queue == nil ) {
 		self.block();
 	}
-	else
-	{
+	else {
 		dispatch_async( self.queue, self.block );
 	}
 }

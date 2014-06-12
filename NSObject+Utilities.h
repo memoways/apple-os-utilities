@@ -21,8 +21,7 @@
 template<typename type> inline type*
 objc_cast( id object )
 {
-	if ( [object isKindOfClass: [type class]] )
-	{
+	if ( [object isKindOfClass: [type class]] ) {
 		return static_cast<type*>( object );
 	}
 

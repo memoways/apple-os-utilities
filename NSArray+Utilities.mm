@@ -44,8 +44,7 @@
 
 - (void) unionArray: (NSArray*) otherArray
 {
-	for ( id object in otherArray )
-	{
+	for ( id object in otherArray ) {
 		if ( not [self containsObject: object] ) [self addObject: object];
 	}
 }

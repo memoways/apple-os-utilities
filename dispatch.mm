@@ -9,12 +9,10 @@
 
 void dispatch_sync_on_main_queue( dispatch_block_t block )
 {
-	if ( pthread_main_np() != 0 )
-	{
+	if ( pthread_main_np() != 0 ) {
 		block();
 	}
-	else
-	{
+	else {
 		dispatch_sync( dispatch_get_main_queue(), block );
 	}
 }

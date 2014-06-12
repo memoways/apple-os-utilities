@@ -104,8 +104,7 @@
 	CFReleaseSafe( encoder );
 	encoder = nullptr;
 
-	if ( (encodedData == nil) or (error != nullptr) )
-	{
+	if ( (encodedData == nil) or (error != nullptr) ) {
 		return nil;
 	}
 

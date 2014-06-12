@@ -479,13 +479,11 @@ namespace
 
 - (bool) hasPrefixCaseInsensitive: (NSString*) prefix
 {
-	if ( [self length] > [prefix length] )
-	{
+	if ( [self length] > [prefix length] ) {
 		return [[self substringToIndex: [prefix length]] caseInsensitiveCompare: prefix] == NSOrderedSame;
 	}
 
-	if ( [self length] == [prefix length] )
-	{
+	if ( [self length] == [prefix length] ) {
 		return [self caseInsensitiveCompare: prefix] == NSOrderedSame;
 	}
 
@@ -582,8 +580,7 @@ namespace
 	CFReleaseSafe( encoder );
 	encoder = nullptr;
 
-	if ( (encodedData == nil) or (error != nullptr) )
-	{
+	if ( (encodedData == nil) or (error != nullptr) ) {
 		return nil;
 	}
 
