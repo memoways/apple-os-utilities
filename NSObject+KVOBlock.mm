@@ -129,6 +129,8 @@ namespace
 
 - (instancetype) init
 {
+	[self doesNotRecognizeSelector: _cmd];
+
 	return nil;
 }
 
