@@ -30,6 +30,7 @@
 
 	if ( [object isKindOfClass: NSString.class] )
 	{
+		if ( self == NSString.class ) return object;
 		if ( self == NSNumber.class ) return [[NSDecimalNumber alloc] initWithString: object];
 		if ( self == NSDecimalNumber.class ) return [[NSDecimalNumber alloc] initWithString: object];
 		if ( self == NSDate.class )
@@ -44,6 +45,7 @@
 	if ( [object isKindOfClass: NSNumber.class] )
 	{
 		if ( self == NSString.class ) return [object stringValue];
+		if ( self == NSNumber.class ) return object;
 		if ( self == NSDecimalNumber.class ) return [[NSDecimalNumber alloc] initWithString: [object stringValue]];
 		if ( self == NSDate.class ) return [[NSDate alloc] initWithTimeIntervalSinceReferenceDate: [object doubleValue]];
 	}
@@ -52,6 +54,7 @@
 	{
 		if ( self == NSNumber.class ) return [[NSNumber alloc] initWithDouble: [object timeIntervalSinceReferenceDate]];
 		if ( self == NSDecimalNumber.class ) return [[NSDecimalNumber alloc] initWithDouble: [object timeIntervalSinceReferenceDate]];
+		if ( self == NSDate.class ) return object;
 	}
 
 	if ( [object isKindOfClass: NSNull.class] )
@@ -60,8 +63,31 @@
 		if ( self == NSNumber.class ) return @0;
 		if ( self == NSDecimalNumber.class ) return NSDecimalNumber.zero;
 		if ( self == NSDate.class ) return [[NSDate alloc] initWithTimeIntervalSinceReferenceDate: 0];
+		if ( self == NSNull.class ) return object;
+		if ( [self isSubclassOfClass: NSArray.class] ) return @[];
+		if ( [self isSubclassOfClass: NSDictionary.class] ) return @{};
+		if ( [self isSubclassOfClass: NSSet.class] ) return [NSSet new];
 
 		return object;
+	}
+
+	if ( [object isKindOfClass: NSArray.class] )
+	{
+		if ( self == NSString.class ) return [((NSArray*) object) componentsJoinedByString: @"\n"];
+		if ( [self isSubclassOfClass: NSArray.class] ) return object;
+		if ( [self isSubclassOfClass: NSSet.class] ) return [[NSSet alloc] initWithArray: ((NSArray*) object)];
+	}
+
+	if ( [object isKindOfClass: NSSet.class] )
+	{
+		if ( self == NSString.class ) return [((NSSet*) object).allObjects componentsJoinedByString: @"\n"];
+		if ( [self isSubclassOfClass: NSArray.class] ) return ((NSSet*) object).allObjects;
+		if ( [self isSubclassOfClass: NSSet.class] ) return object;
+	}
+
+	if ( [object isKindOfClass: NSDictionary.class] )
+	{
+		if ( [self isSubclassOfClass: NSDictionary.class] ) return object;
 	}
 
 	return nil;
@@ -76,6 +102,7 @@
 
 	if ( [self isKindOfClass: NSString.class] )
 	{
+		if ( type == NSString.class ) return self;
 		if ( type == NSNumber.class ) return [[NSDecimalNumber alloc] initWithString: idself];
 		if ( type == NSDecimalNumber.class ) return [[NSDecimalNumber alloc] initWithString: idself];
 		if ( type == NSDate.class )
@@ -90,6 +117,7 @@
 	if ( [self isKindOfClass: NSNumber.class] )
 	{
 		if ( type == NSString.class ) return [idself stringValue];
+		if ( type == NSNumber.class ) return self;
 		if ( type == NSDecimalNumber.class ) return [[NSDecimalNumber alloc] initWithString: [idself stringValue]];
 		if ( type == NSDate.class ) return [[NSDate alloc] initWithTimeIntervalSinceReferenceDate: [idself doubleValue]];
 	}
@@ -98,6 +126,7 @@
 	{
 		if ( type == NSNumber.class ) return [[NSNumber alloc] initWithDouble: [idself timeIntervalSinceReferenceDate]];
 		if ( type == NSDecimalNumber.class ) return [[NSDecimalNumber alloc] initWithDouble: [idself timeIntervalSinceReferenceDate]];
+		if ( type == NSDate.class ) return self;
 	}
 
 	if ( [self isKindOfClass: NSNull.class] )
@@ -106,8 +135,31 @@
 		if ( type == NSNumber.class ) return @0;
 		if ( type == NSDecimalNumber.class ) return NSDecimalNumber.zero;
 		if ( type == NSDate.class ) return [[NSDate alloc] initWithTimeIntervalSinceReferenceDate: 0];
+		if ( type == NSNull.class ) return self;
+		if ( [type isSubclassOfClass: NSArray.class] ) return @[];
+		if ( [type isSubclassOfClass: NSDictionary.class] ) return @{};
+		if ( [type isSubclassOfClass: NSSet.class] ) return [NSSet new];
 
 		return self;
+	}
+
+	if ( [self isKindOfClass: NSArray.class] )
+	{
+		if ( type == NSString.class ) return [((NSArray*) self) componentsJoinedByString: @"\n"];
+		if ( [type isSubclassOfClass: NSArray.class] ) return self;
+		if ( [type isSubclassOfClass: NSSet.class] ) return [[NSSet alloc] initWithArray: ((NSArray*) self)];
+	}
+
+	if ( [self isKindOfClass: NSSet.class] )
+	{
+		if ( type == NSString.class ) return [((NSSet*) self).allObjects componentsJoinedByString: @"\n"];
+		if ( [type isSubclassOfClass: NSArray.class] ) return ((NSSet*) self).allObjects;
+		if ( [type isSubclassOfClass: NSSet.class] ) return self;
+	}
+
+	if ( [self isKindOfClass: NSDictionary.class] )
+	{
+		if ( [type isSubclassOfClass: NSDictionary.class] ) return self;
 	}
 
 	return nil;
