@@ -55,6 +55,28 @@ func unwrap< T1, T2, T3, T4, T5 >( value1: T1?, value2: T2?, value3: T3?, value4
 	return nil
 }
 
+// MARK: - curry
+
+func curry< T1, T2, R >( f: ( T1, T2 ) -> R ) -> (T1) -> (T2) -> R
+{
+	return { (t1) in { (t2) in f( t1, t2 ) } }
+}
+
+func curry< T1, T2, T3, R >( f: ( T1, T2, T3 ) -> R ) -> (T1) -> (T2) -> (T3) -> R
+{
+	return { (t1) in { (t2) in { (t3) in f( t1, t2, t3 ) } } }
+}
+
+func curry< T1, T2, T3, T4, R >( f: ( T1, T2, T3, T4 ) -> R ) -> (T1) -> (T2) -> (T3) -> (T4) -> R
+{
+	return { (t1) in { (t2) in { (t3) in { (t4) in f( t1, t2, t3, t4 ) } } } }
+}
+
+func curry< T1, T2, T3, T4, T5, R >( f: ( T1, T2, T3, T4, T5 ) -> R ) -> (T1) -> (T2) -> (T3) -> (T4) -> (T5) -> R
+{
+	return { (t1) in { (t2) in { (t3) in { (t4) in { (t5) in f( t1, t2, t3, t4, t5 ) } } } } }
+}
+
 // MARK: - isEmpty
 
 func isEmpty<T>( value: T? ) -> Bool
