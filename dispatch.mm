@@ -4,6 +4,7 @@
 //	copyright:	© 2009-2014, men in silicium sàrl
 //
 
+#import "pthread.h"
 #import "OS/dispatch.h"
 
 

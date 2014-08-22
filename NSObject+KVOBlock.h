@@ -4,6 +4,8 @@
 //	copyright:	© 2014-2014, men in silicium sàrl
 //
 
+#import <Foundation/Foundation.h>
+
 
 @interface NSObject (KVOBlock)
 

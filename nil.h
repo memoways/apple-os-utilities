@@ -4,6 +4,13 @@
 //	copyright:	© 2009-2014, men in silicium sàrl
 //
 
+#import <Foundation/Foundation.h>
+#ifdef __cplusplus
+#include <cstddef>
+#endif
+
+#import "OS/ARC.h"
+
 
 // is_nil & is_not_nil
 

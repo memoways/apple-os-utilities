@@ -4,6 +4,7 @@
 //	copyright:	© 2010-2014, men in silicium sàrl
 //
 
+#import "OS/NSObject+Utilities.h"
 #import "OS/OS.h"
 
 

@@ -4,6 +4,8 @@
 //	copyright:	© 2008-2014, men in silicium sàrl
 //
 
+#import <Foundation/Foundation.h>
+
 
 @interface NSURL (Utilities)
 

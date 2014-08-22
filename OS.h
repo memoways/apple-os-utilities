@@ -4,6 +4,8 @@
 //	copyright:	© 2011-2014, men in silicium sàrl
 //
 
+#import <Foundation/Foundation.h>
+
 #import "OS/ARC.h"
 #import "OS/nil.h"
 #import "OS/dispatch.h"
