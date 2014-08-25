@@ -51,7 +51,7 @@ namespace
 {
 	dispatch_once( &kvo_blocks_queue_once, ^ ()
 	{
-		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", 0 );
+		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", DISPATCH_QUEUE_SERIAL );
 	});
 
 	MKVOBlock* observer = [MKVOBlock newWithObservee: self keypath: keyPath queue: queue block: block];
@@ -77,7 +77,7 @@ namespace
 {
 	dispatch_once( &kvo_blocks_queue_once, ^ ()
 	{
-		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", 0 );
+		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", DISPATCH_QUEUE_SERIAL );
 	});
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
@@ -99,7 +99,7 @@ namespace
 {
 	dispatch_once( &kvo_blocks_queue_once, ^ ()
 	{
-		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", 0 );
+		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", DISPATCH_QUEUE_SERIAL );
 	});
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
@@ -153,7 +153,7 @@ namespace
 {
 	dispatch_once( &kvo_blocks_queue_once, ^ ()
 	{
-		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", 0 );
+		kvo_blocks_queue = dispatch_queue_create( "com.meninsilicium.KVOBlocks", DISPATCH_QUEUE_SERIAL );
 	});
 
 	dispatch_sync( kvo_blocks_queue, ^ ()
