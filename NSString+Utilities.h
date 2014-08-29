@@ -39,11 +39,11 @@
 - (NSDate*) dateJSON;
 - (NSDate*) dateJSON2;
 
-- (bool) containsString: (NSString*) string;
-- (bool) containsStringCaseInsensitive: (NSString*) string;
+- (BOOL) containsString: (NSString*) string;
+- (BOOL) containsStringCaseInsensitive: (NSString*) string;
 
-- (bool) isEqualToStringCaseInsensitive: (NSString*) string;
-- (bool) hasPrefixCaseInsensitive: (NSString*) prefix;
+- (BOOL) isEqualToStringCaseInsensitive: (NSString*) string;
+- (BOOL) hasPrefixCaseInsensitive: (NSString*) prefix;
 
 - (NSString*) substringFromIndex: (NSUInteger) from included: (BOOL) included;
 - (NSString*) substringToString: (NSString*) string;

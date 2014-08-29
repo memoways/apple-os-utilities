@@ -462,22 +462,22 @@ namespace
 	__unused NSString* coordinate = @"+44.1617+004.6209+057.000/";
 }
 
-- (bool) containsString: (NSString*) string
+- (BOOL) containsString: (NSString*) string
 {
 	return [self rangeOfString: string].length != 0;
 }
 
-- (bool) containsStringCaseInsensitive: (NSString*) string
+- (BOOL) containsStringCaseInsensitive: (NSString*) string
 {
 	return [self rangeOfString: string options: NSCaseInsensitiveSearch].length != 0;
 }
 
-- (bool) isEqualToStringCaseInsensitive: (NSString*) string
+- (BOOL) isEqualToStringCaseInsensitive: (NSString*) string
 {
 	return [self caseInsensitiveCompare: string] == NSOrderedSame;
 }
 
-- (bool) hasPrefixCaseInsensitive: (NSString*) prefix
+- (BOOL) hasPrefixCaseInsensitive: (NSString*) prefix
 {
 	if ( [self length] > [prefix length] ) {
 		return [[self substringToIndex: [prefix length]] caseInsensitiveCompare: prefix] == NSOrderedSame;
