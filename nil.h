@@ -85,20 +85,25 @@ NS_INLINE BOOL is_empty( id object )
 	if ( is_nil( object ) ) return YES;
 
 	// NSString
-	if ( [object isKindOfClass: NSString.class] and (((NSString*) object).length == 0) ) return YES;
+	if ( [object isKindOfClass: NSString.class] ) {
+		return ((NSString*) object).length == 0;
+	}
 
 	// NSArray, NSDictionary, NSSet & NSOrderedSet
-	if ( ([object isKindOfClass: NSArray.class] or [object isKindOfClass: NSDictionary.class] or
-		[object isKindOfClass: NSSet.class] or [object isKindOfClass: NSOrderedSet.class]) and
-		([object count] == 0) ) {
-		return YES;
+	if ( [object isKindOfClass: NSArray.class] || [object isKindOfClass: NSDictionary.class] ||
+		[object isKindOfClass: NSSet.class] || [object isKindOfClass: NSOrderedSet.class] ) {
+		return [object count] == 0;
 	}
 
 	// NSData
-	if ( [object isKindOfClass: NSData.class] and (((NSData*) object).length == 0) ) return YES;
+	if ( [object isKindOfClass: NSData.class] ) {
+		return ((NSData*) object).length == 0;
+	}
 
 	// NSURL
-	if ( [object isKindOfClass: NSURL.class] and ([((NSURL*) object) absoluteString].length == 0) ) return YES;
+	if ( [object isKindOfClass: NSURL.class] ) {
+		return [((NSURL*) object) absoluteString].length == 0;
+	}
 
 	return NO;
 }
@@ -119,7 +124,7 @@ NS_INLINE BOOL is_empty( void* pointer )
 
 NS_INLINE BOOL is_not_empty( id object )
 {
-	return not is_empty( object );
+	return ! is_empty( object );
 }
 
 #if __cplusplus
