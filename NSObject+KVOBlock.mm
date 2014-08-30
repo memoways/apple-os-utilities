@@ -137,7 +137,7 @@ namespace
 - (instancetype) initWithObservee: (id) object keypath: (NSString*) keypath queue: (dispatch_queue_t) queue block: (KVOBlock) block
 {
 	self = [super init];
-	if ( self == nil ) return nil;
+	if ( is_nil( self ) ) return nil;
 	if ( block == nil ) return nil;
 
 	self.uuid = [[NSUUID new].UUIDString lowercaseString];

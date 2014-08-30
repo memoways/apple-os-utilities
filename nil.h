@@ -16,17 +16,14 @@
 
 NS_INLINE BOOL is_nil( id object )
 {
-	if ( object == nil ) return YES;
-	if ( object == NSNull.null ) return YES;
-
-	return NO;
+	return ( object == nil ) || ( object == NSNull.null );
 }
 
 #if __cplusplus
 
 NS_INLINE BOOL is_nil( std::nullptr_t pointer )
 {
-	return YES;
+	return pointer == nullptr;
 }
 
 NS_INLINE BOOL is_nil( void* pointer )
@@ -38,14 +35,14 @@ NS_INLINE BOOL is_nil( void* pointer )
 
 NS_INLINE BOOL is_not_nil( id object )
 {
-	return not is_nil( object );
+	return ! is_nil( object );
 }
 
 #if __cplusplus
 
 NS_INLINE BOOL is_not_nil( std::nullptr_t pointer )
 {
-	return NO;
+	return not is_nil( pointer );
 }
 
 NS_INLINE BOOL is_not_nil( void* pointer )
@@ -59,22 +56,22 @@ NS_INLINE BOOL is_not_nil( void* pointer )
 
 #if __cplusplus
 
-NS_INLINE bool is_nullptr( std::nullptr_t pointer )
-{
-	return true;
-}
-
-NS_INLINE bool is_nullptr( void* pointer )
+NS_INLINE BOOL is_nullptr( std::nullptr_t pointer )
 {
 	return pointer == nullptr;
 }
 
-NS_INLINE bool is_not_nullptr( std::nullptr_t pointer )
+NS_INLINE BOOL is_nullptr( void* pointer )
 {
-	return false;
+	return pointer == nullptr;
 }
 
-NS_INLINE bool is_not_nullptr( void* pointer )
+NS_INLINE BOOL is_not_nullptr( std::nullptr_t pointer )
+{
+	return pointer != nullptr;
+}
+
+NS_INLINE BOOL is_not_nullptr( void* pointer )
 {
 	return pointer != nullptr;
 }
