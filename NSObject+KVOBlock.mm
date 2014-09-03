@@ -124,7 +124,7 @@ namespace
 
 + (instancetype) newWithObservee: (id) object keypath: (NSString*) keypath queue: (dispatch_queue_t) queue block: (KVOBlock) block
 {
-	return [[self alloc] initWithObservee: object keypath: keypath queue: queue block: block];
+	return [[MKVOBlock alloc] initWithObservee: object keypath: keypath queue: queue block: block];
 }
 
 - (instancetype) init
