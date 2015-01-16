@@ -118,7 +118,7 @@ namespace
 	{
 		rfc1123DateFormatter = [NSDateFormatter new];
 		rfc1123DateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US_POSIX"];
-		rfc1123DateFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation: @"UTC"];
+		rfc1123DateFormatter.timeZone = [[NSTimeZone alloc] initWithName: @"UTC"];
 
 		rfc1123DateFormatter.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
 	}
