@@ -13,7 +13,7 @@
 @interface MDeallocBlock : NSObject
 
 
-@property ( readwrite, nonatomic, strong ) dispatch_queue_t queue;
+@property ( readwrite, nonatomic ) dispatch_queue_t queue;
 @property ( readwrite, nonatomic, copy ) dispatch_block_t block;
 
 

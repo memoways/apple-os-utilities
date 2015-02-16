@@ -18,7 +18,7 @@
 @property ( readwrite, nonatomic, weak ) id object;
 @property ( readwrite, nonatomic, copy ) NSString* keypath;
 
-@property ( readwrite, nonatomic, strong ) dispatch_queue_t queue;
+@property ( readwrite, nonatomic ) dispatch_queue_t queue;
 @property ( readwrite, nonatomic, copy ) KVOBlock block;
 
 
